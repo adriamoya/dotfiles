@@ -84,7 +84,7 @@ install_zsh () {
   fi
 }
 
-# install_zsh
+install_zsh
 
 # Specify ZSH custom directory
 ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
