@@ -67,7 +67,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zsh_exports
 source $HOME/.zsh_aliases
-source $HOME/.bash_profile
+# source $HOME/.bash_profile
 
 # User configuration
 

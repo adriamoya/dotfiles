@@ -100,6 +100,19 @@ if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]]; then
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 fi
 
+# Install the MaterialDark Color Scheme
+if [[ ! -d $HOME/.oh-my-zsh/custom/schemes/MaterialDark.itermcolors ]]; then
+  echo "Installing MaterialDark color scheme"
+  curl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/MaterialDark.itermcolors > ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/schemes/test.itermcolors
+fi
+
+# Install Powerline
+echo "Installing powerline fonts"
+pip install --user powerline-status
+git clone https://github.com/powerline/fonts
+cd fonts
+./install.sh
+
 # Symlink .zshrc
 ln -sf "$DOTFILES_DIR/.zshrc" ~
 ln -sf "$DOTFILES_DIR/.zsh_exports" ~
