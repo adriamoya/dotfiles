@@ -1,9 +1,8 @@
 # Dotfiles
 
+iTerm2 + Zsh (oh-my-zsh) + Powerlevel9k + Hack Nerd + Colorls
+
 ![](iterm2.png)
-<p style="text-align:center; margin-top:-50px; font-style: italic;">
-  <small>iTerm2 + Zsh + Powerlevel9k + Hack Nerd + Colorls</small>
-</p>
 
 ## Prerequisites
 
