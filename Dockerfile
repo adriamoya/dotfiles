@@ -1,7 +1,8 @@
 FROM ubuntu:16.04
+
 # OS updates and install
 RUN apt-get -qq update
-RUN apt-get install git sudo zsh curl vim nano -qq -y
+RUN apt-get install git sudo zsh curl vim nano ruby python3-pip -qq -y
 
 # Create test user and add to sudoers
 RUN useradd -m -s /bin/zsh tester

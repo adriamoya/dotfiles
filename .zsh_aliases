@@ -20,10 +20,16 @@ else # macOS `ls`
   colorflag="-G"
   export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
+
 alias l="ls -lF ${colorflag}"
 alias la="ls -laF ${colorflag}"
 alias lsd="ls -lF ${co#lorflag} | grep --color=never '^d'"
 alias ls="command ls ${colorflag}"
+
+# colorls
+alias l='colorls -l -1 --sd --gs'
+alias la='colorls -al -1 --sd --gs'
+alias lc='colorls -l --sd'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"

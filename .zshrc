@@ -7,7 +7,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="spaceship"
 # ZSH_THEME="cobalt2"
 
 # Set list of themes to load
@@ -97,3 +98,33 @@ source $HOME/.zsh_aliases
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Powerlevel9k
+# ------------------------------------------------------------------------------
+
+# Customise the Powerlevel9k prompts (https://github.com/bhilburn/powerlevel9k#available-prompt-segments)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+  user dir vcs newline status
+)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+
+# Load Nerd Fonts with Powerlevel9k theme for Zsh
+POWERLEVEL9K_MODE='nerdfont-complete'
+# source ~/powerlevel9k/powerlevel9k.zsh-theme
+
+# Set a color for iTerm2 tab title background using rgb values
+function title_background_color {
+  echo -ne "\033]6;1;bg;red;brightness;$ITERM2_TITLE_BACKGROUND_RED\a"
+  echo -ne "\033]6;1;bg;green;brightness;$ITERM2_TITLE_BACKGROUND_GREEN\a"
+  echo -ne "\033]6;1;bg;blue;brightness;$ITERM2_TITLE_BACKGROUND_BLUE\a"
+}
+
+ITERM2_TITLE_BACKGROUND_RED="18"
+ITERM2_TITLE_BACKGROUND_GREEN="26"
+ITERM2_TITLE_BACKGROUND_BLUE="33"
+
+title_background_color
+
+# Colorls (change colors with > atom $(dirname $(gem which colorls))/yaml)
+source $(dirname $(gem which colorls))/tab_complete.sh
