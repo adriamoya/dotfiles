@@ -26,7 +26,7 @@ Customizing iTerm2 terminal for the shell Zsh.
    - Hack Nerd
    - Powerline
 * Ruby gems:
- - [colorls](https://github.com/athityakumar/colorls)
+   - [colorls](https://github.com/athityakumar/colorls)
 * Git config files
 
 ## Installation
@@ -48,3 +48,11 @@ docker run -it --rm --name dotfiles_test dotfiles_test
 * Framework (Python, ...)
 * Atom packages + customization
 * OSX apps
+
+## Bibliography
+
+https://medium.com/@oldwestaction/beautifying-your-terminal-with-zsh-prezto-powerlevel9k-9e8de2023046
+
+https://medium.freecodecamp.org/how-you-can-style-your-terminal-like-medium-freecodecamp-or-any-way-you-want-f499234d48bc
+
+https://medium.freecodecamp.org/lolcat-colorls-catpix-and-other-ruby-gems-to-add-color-to-your-terminal-16f4d9499ac7
