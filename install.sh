@@ -40,8 +40,42 @@ backup_old () {
 
 backup_old
 
-
 ###############################################################################
+# Brew                                                                        #
+###############################################################################
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Check for Homebrew and install it if missing
+if test ! $(which brew)
+then
+  printf "\n---> Installing Homebrew...\n"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+# Make sure we’re using the latest Homebrew
+printf "\n---> Updating brew...\n"
+brew update
+
+apps=(
+    git
+    tree
+    wget
+) # python
+
+brew install "${apps[@]}"
+
+# brew install python - this will install the latest version of Python,
+# which should come packaged with PIP. If the installation is successful
+# but PIP is unavailable, you may need to re-link Python using the following
+# Terminal command:
+# brew unlink python && brew link python
+
+# Remove outdated versions from the cellar
+brew cleanup
+
+##############################################################################
 # Git                                                                         #
 ###############################################################################
 
