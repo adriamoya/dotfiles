@@ -128,3 +128,6 @@ title_background_color
 
 # Colorls (change colors with > atom $(dirname $(gem which colorls))/yaml)
 source $(dirname $(gem which colorls))/tab_complete.sh
+
+# Initialize Z (https://github.com/rupa/z)
+. ~/z.sh

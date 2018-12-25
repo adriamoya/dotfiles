@@ -154,6 +154,15 @@ printf "\n---> Installing Hack Nerd fonts\n"
 brew tap caskroom/fonts
 brew cask install font-hack-nerd-font
 
+###############################################################################
+# Z (https://github.com/rupa/z)                                               #
+###############################################################################
+
+if [ ! -f $HOME/z.sh ]; then
+  printf "\n---> Installing z.sh\n"
+  curl https://raw.githubusercontent.com/rupa/z/master/z.sh > $HOME/z.sh
+fi
+
 
 # Symlink .zshrc
 printf "\n---> Symlink .zshrc .zsh_exports .zsh_aliases\n"
