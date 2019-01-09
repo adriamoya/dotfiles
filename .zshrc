@@ -1,3 +1,10 @@
+# @Author: adriamoya
+# @Date:   2018-11-24T22:12:13+00:00
+# @Last modified by:   adriamoya
+# @Last modified time: 2019-01-09T21:56:22+00:00
+
+
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -104,7 +111,7 @@ source $HOME/.zsh_aliases
 
 # Customise the Powerlevel9k prompts (https://github.com/bhilburn/powerlevel9k#available-prompt-segments)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-  user dir vcs newline status
+ user dir vcs newline status virtualenv docker_machine
 )
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
