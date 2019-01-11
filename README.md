@@ -1,4 +1,4 @@
-# Dotfiles
+# Dotfiles (for macOS)
 
 iTerm2 + Zsh (oh-my-zsh) + Powerlevel9k + Hack Nerd + Colorls
 
