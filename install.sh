@@ -1,7 +1,7 @@
 # @Author: adriamoya
 # @Date:   2018-11-24T22:12:13+00:00
 # @Last modified by:   adriamoya
-# @Last modified time: 2019-01-11T17:19:29+00:00
+# @Last modified time: 2019-01-11T22:27:54+00:00
 
 #!/bin/bash
 
@@ -239,4 +239,4 @@ fi
 echo "\n---> Symlink .zshrc .zsh_exports .zsh_aliases\n"
 ln -sf "$CURRENT_DIR/.zshrc" "$DOTFILES_DIR/.zshrc"
 ln -sf "$CURRENT_DIR/.zsh_exports" "$DOTFILES_DIR/.zsh_exports"
-# ln -sf "$CURRENT_DIR/.zsh_aliases" "$DOTFILES_DIR/.zsh_aliases"
+ln -sf "$CURRENT_DIR/.zsh_aliases" "$DOTFILES_DIR/.zsh_aliases"
