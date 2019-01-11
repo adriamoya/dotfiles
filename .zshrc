@@ -1,7 +1,7 @@
 # @Author: adriamoya
 # @Date:   2018-11-24T22:12:13+00:00
 # @Last modified by:   adriamoya
-# @Last modified time: 2019-01-09T21:56:22+00:00
+# @Last modified time: 2019-01-11T11:29:27+00:00
 
 
 
@@ -67,8 +67,12 @@ HIST_STAMPS="yyyy/mm/dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+# https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins
 plugins=(
   git
+  docker
+  kubectl
+  tmux
 )
 
 # Sourcing oh-my-zsh and other shell helpers
@@ -135,6 +139,13 @@ title_background_color
 
 # Colorls (change colors with > atom $(dirname $(gem which colorls))/yaml)
 source $(dirname $(gem which colorls))/tab_complete.sh
+
+# Enable docker completion -- no need since there is a plugin in oh-my-zsh
+# fpath=(~/.zsh/completion $fpath)
+# autoload -Uz compinit && compinit -i
+
+# Enable kubernetes completion -- no need since there is a plugin in oh-my-zsh
+# source <(kubectl completion zsh)
 
 # Initialize Z (https://github.com/rupa/z)
 . ~/z.sh

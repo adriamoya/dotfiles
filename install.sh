@@ -1,25 +1,35 @@
+# @Author: adriamoya
+# @Date:   2018-11-24T22:12:13+00:00
+# @Last modified by:   adriamoya
+# @Last modified time: 2019-01-11T17:19:29+00:00
+
 #!/bin/bash
 
 # Get dotfiles installation directory
-DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES_DIR=~
+
+# Current directories
+CURRENT_DIR=$(pwd)
+CURRENT_SCRIPT=${0##*/}
 
 # Backing up old dotfiles
 backup_old () {
 
-  printf "\n---> Backing up old dotfiles...\n"
+  echo "\n---> Backing up old dotfiles...\n"
 
-  dir=~/.dotfiles                        # dotfiles director
+  dir=$DOTFILES_DIR                      # dotfiles directory
   dir_backup=~/.dotfiles_old             # old dotfiles backup directory
 
   # Create dotfiles_old in homedir
-  echo -n "Creating $dir_backup for backup of any existing dotfiles in ~..."
+  echo "\nCreating $dir_backup/ for backup of any existing dotfiles in ~/"
   mkdir -p $dir_backup
-  echo "done"
+  echo "Done."
 
   # Change to the dotfiles directory
-  echo -n "Changing to the $dir directory..."
-  cd $dir
-  echo "done"
+  # echo "\nChanging to the $dir/ directory..."
+  # cd $dir
+  # echo "Done\n"
 
   declare -a FILES_TO_SYMLINK=(
   'gitconfig'
@@ -33,9 +43,10 @@ backup_old () {
   # then create symlinks from the homedir to any files in the ~/dotfiles directory
   # specified in $files
   for i in ${FILES_TO_SYMLINK[@]}; do
-    echo "Moving any existing dotfiles from ~ to $dir_backup"
-    cp ~/.${i##*/} ~/.dotfiles_old/
+    echo "[.${i##*/}] - Moving any existing dotfiles from $dir to $dir_backup"
+    cp $dir/.${i##*/} $dir_backup/  # cp ~/.${i##*/} ~/.dotfiles_old/
   done
+  echo "Done."
 }
 
 backup_old
@@ -44,63 +55,86 @@ backup_old
 # Brew                                                                        #
 ###############################################################################
 
-# Ask for the administrator password upfront
-sudo -v
+brew_install() {
+  # Ask for the administrator password upfront
+  sudo -v
 
-# Check for Homebrew and install it if missing
-if test ! $(which brew)
-then
-  printf "\n---> Installing Homebrew...\n"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
+  # Check for Homebrew and install it if missing
+  if test ! $(which brew)
+  then
+    echo "\n---> Installing Homebrew...\n"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
 
-# Make sure we’re using the latest Homebrew
-printf "\n---> Updating brew...\n"
-brew update
+  # Make sure we’re using the latest Homebrew
+  echo "\n---> Updating brew...\n"
+  brew update
 
-apps=(
+  apps=(
     git
     tree
     wget
-) # python
+  ) # python
 
-brew install "${apps[@]}"
+  echo "\nInstalling the following packages: ${apps[@]}"
 
-# brew install python - this will install the latest version of Python,
-# which should come packaged with PIP. If the installation is successful
-# but PIP is unavailable, you may need to re-link Python using the following
-# Terminal command:
-# brew unlink python && brew link python
+  for i in ${apps[@]}; do
+    if brew ls --versions "${i}" !> /dev/null; then
+      echo "[${i}] installing..."
+      brew install "${i}"
+    else
+      echo "[${i}] already installed!"
+    fi
+  done
 
-# Remove outdated versions from the cellar
-brew cleanup
+  # brew install python - this will install the latest version of Python,
+  # which should come packaged with PIP. If the installation is successful
+  # but PIP is unavailable, you may need to re-link Python using the following
+  # Terminal command:
+  # brew unlink python && brew link python
+
+  # Remove outdated versions from the cellar
+  brew cleanup
+
+  echo "Done."
+}
+
+brew_install
 
 ##############################################################################
 # Git                                                                         #
 ###############################################################################
 
 # .gitconfig and .gitignore_global
-printf "\n---> Linking Git config files...\n"
-ln -sf "$DOTFILES_DIR/.gitconfig" ~
-ln -sf "$DOTFILES_DIR/.gitignore_global" ~
+echo "\n---> Linking Git config files...\n"
+ln -sf "$CURRENT_DIR/.gitconfig" "$DOTFILES_DIR/.gitconfig"
+ln -sf "$CURRENT_DIR/.gitignore_global" "$DOTFILES_DIR/.gitignore_global"
 
 ###############################################################################
 # ZSH                                                                         #
 ###############################################################################
 
 install_zsh () {
-  printf "\n---> Installing zsh...\n"
+  echo "\n---> Installing zsh + oh-my-zsh...\n\n"
   # Test to see if zshell is installed.  If it is:
   if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
+    echo "Zsh already installed!"
     # Install Oh My Zsh if it isn't already present
-    if [[ ! -d $dir/oh-my-zsh/ ]]; then
+    if [[ ! -d /.oh-my-zsh/ ]]; then
+      echo "Oh-my-zsh is not present, installing..."
       sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    else
+      echo "Oh-my-zsh already installed!"
     fi
+
     # Set the default shell to zsh if it isn't currently set to zsh
     if [[ ! $(echo $SHELL) == $(which zsh) ]]; then
+      echo "setting default shell to zsh..."
       chsh -s $(which zsh)
     fi
+
   else
+    echo "Zsh not installed..."
     # If zsh isn't installed, get the platform of the current machine
     platform=$(uname);
     # If the platform is Linux, try an apt-get to install zsh and then recurse
@@ -118,8 +152,12 @@ install_zsh () {
       echo "We'll install zsh, then re-run this script!"
       brew install zsh
       exit
+      # Not sure if it would do the trick
+      echo "Reexecuting script"
+      exec "$CURRENT_DIR"/"$CURRENT_SCRIPT"
     fi
   fi
+  echo "Done."
 }
 
 install_zsh
@@ -129,7 +167,7 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
 
 # Install the ZSH syntax highlighting plugin if it's not already installed
 if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]]; then
-  printf "\n---> Installing Syntax highlighting\n"
+  echo "\n---> Installing Syntax highlighting\n"
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 fi
 
@@ -138,13 +176,13 @@ fi
 
 # Install the ZSH spaceship theme if not already installed
 if [[ ! -d $HOME/.oh-my-zsh/custom/themes/spaceship-prompt ]]; then
-  printf "\n---> Installing Spaceship theme\n"
+  echo "\n---> Installing Spaceship theme\n"
   git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
   ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 fi
 
 if [[ ! -d $HOME/.oh-my-zsh/custom/themes/powerlevel9k ]]; then
-  printf "\n---> Installing Powerlevel9k theme\n"
+  echo "\n---> Installing Powerlevel9k theme\n"
   git clone https://github.com/bhilburn/powerlevel9k.git  "$ZSH_CUSTOM/themes/powerlevel9k"
   ln -s "$ZSH_CUSTOM/themes/powerlevel9k/powerlevel9k.zsh-theme" "$ZSH_CUSTOM/themes/powerlevel9k.zsh-theme"
 fi
@@ -159,32 +197,32 @@ fi
 
 # Install the MaterialDark Color Scheme
 if [ ! -f $HOME/.oh-my-zsh/custom/schemes/MaterialDark.itermcolors ]; then
-  printf "\n---> Installing MaterialDark color scheme\n"
+  echo "\n---> Installing MaterialDark color scheme\n"
   curl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/MaterialDark.itermcolors > ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/schemes/MaterialDark.itermcolors
 fi
 
 # Install the Solarized Dark Color Scheme
 if [ ! -f $HOME/.oh-my-zsh/custom/schemes/Solarized\ Dark.itermcolors ]; then
-  printf "\n---> Installing Solarized Dark color scheme\n"
+  echo "\n---> Installing Solarized Dark color scheme\n"
   curl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Solarized%20Dark.itermcolors > ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/schemes/Solarized\ Dark.itermcolors
 fi
-
+#
 # Install colorls - Enhances the terminal command ls with color and icons
-printf "\n---> Installing colorls\n"
+echo "\n---> Installing colorls\n"
 sudo gem install colorls
 
 # Fonts
 ###############################################################################
 
 # Install Powerline Fonts
-printf "\n---> Installing Powerline fonts\n"
+echo "\n---> Installing Powerline fonts\n"
 pip install --user powerline-status
 git clone https://github.com/powerline/fonts
 . ./fonts/install.sh
 rm -rf ./fonts
 
 # Install Hack Nerd Fonts
-printf "\n---> Installing Hack Nerd fonts\n"
+echo "\n---> Installing Hack Nerd fonts\n"
 brew tap caskroom/fonts
 brew cask install font-hack-nerd-font
 
@@ -193,13 +231,12 @@ brew cask install font-hack-nerd-font
 ###############################################################################
 
 if [ ! -f $HOME/z.sh ]; then
-  printf "\n---> Installing z.sh\n"
+  echo "\n---> Installing z.sh\n"
   curl https://raw.githubusercontent.com/rupa/z/master/z.sh > $HOME/z.sh
 fi
 
-
 # Symlink .zshrc
-printf "\n---> Symlink .zshrc .zsh_exports .zsh_aliases\n"
-ln -sf "$DOTFILES_DIR/.zshrc" ~
-ln -sf "$DOTFILES_DIR/.zsh_exports" ~
-ln -sf "$DOTFILES_DIR/.zsh_aliases" ~
+echo "\n---> Symlink .zshrc .zsh_exports .zsh_aliases\n"
+ln -sf "$CURRENT_DIR/.zshrc" "$DOTFILES_DIR/.zshrc"
+ln -sf "$CURRENT_DIR/.zsh_exports" "$DOTFILES_DIR/.zsh_exports"
+# ln -sf "$CURRENT_DIR/.zsh_aliases" "$DOTFILES_DIR/.zsh_aliases"
