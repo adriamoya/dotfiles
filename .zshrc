@@ -1,12 +1,16 @@
 # @Author: adriamoya
 # @Date:   2018-11-24T22:12:13+00:00
 # @Last modified by:   adriamoya
-# @Last modified time: 2019-01-11T11:29:27+00:00
-
+# @Last modified time: 2019-01-14T17:03:10+00:00
 
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Anaconda
+if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
+  export PATH="/anaconda3/bin:$PATH"
+fi
 
 # Path to the oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
