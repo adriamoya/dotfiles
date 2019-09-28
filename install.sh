@@ -75,6 +75,7 @@ brew_install() {
   apps=(
     git
     jq
+    tmux
     tree
     wget
   ) # python

@@ -35,6 +35,11 @@ Customizing iTerm2 terminal for the shell Zsh.
 . ./install.sh
 ```
 
+## Settings
+
+![](iterm3.png)
+![](iterm4.png)
+
 ## Testing
 
 ```shell
