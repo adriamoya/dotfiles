@@ -201,7 +201,13 @@ if [ ! -f $HOME/.oh-my-zsh/custom/schemes/Solarized\ Dark.itermcolors ]; then
   echo "\n---> Installing Solarized Dark color scheme\n"
   curl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Solarized%20Dark.itermcolors > ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/schemes/Solarized\ Dark.itermcolors
 fi
-#
+
+# Install the Solarized Dark Higher Contrast Color Scheme
+if [ ! -f $HOME/.oh-my-zsh/custom/schemes/Solarized\ Dark\ Higher\ Contrast.itermcolors ]; then
+  echo "\n---> Installing Solarized Dark Higher Contrast color scheme\n"
+  curl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Solarized%20Dark%20Higher%20Contrast.itermcolors > ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/schemes/Solarized\ Dark\ Higher\ Contrast.itermcolors
+fi
+
 # Install colorls - Enhances the terminal command ls with color and icons
 echo "\n---> Installing colorls\n"
 sudo gem install colorls
