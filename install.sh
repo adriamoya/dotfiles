@@ -208,6 +208,12 @@ if [ ! -f $HOME/.oh-my-zsh/custom/schemes/Solarized\ Dark\ Higher\ Contrast.iter
   curl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Solarized%20Dark%20Higher%20Contrast.itermcolors > ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/schemes/Solarized\ Dark\ Higher\ Contrast.itermcolors
 fi
 
+# Install the SpaceGray Color Scheme
+if [ ! -f $HOME/.oh-my-zsh/custom/schemes/SpaceGray.itermcolors ]; then
+  echo "\n---> Installing SpaceGray color scheme\n"
+  curl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/SpaceGray.itermcolors > ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/schemes/SpaceGray.itermcolors
+fi
+
 # Install colorls - Enhances the terminal command ls with color and icons
 echo "\n---> Installing colorls\n"
 sudo gem install colorls
