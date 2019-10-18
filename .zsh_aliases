@@ -3,6 +3,7 @@ alias reload="source ~/.zshrc"
 alias _="sudo -E"
 alias dnf="sudo dnf"
 alias rr="rm -rf"
+alias c="clear"
 
 # Directory traversal
 alias ..="cd .."
