@@ -218,6 +218,12 @@ fi
 echo "\n---> Installing colorls\n"
 sudo gem install colorls
 
+# Adjust colorls settings
+echo "\n---> Adjusting colorls settings\n"
+mkdir $HOME/.config/colorls
+cp ./dark_colors.yaml $HOME/.config/colorls/dark_colors.yaml
+# cp $(dirname $(gem which colorls))/yaml/dark_colors.yaml ~/.config/colorls/dark_colors.yaml
+
 # Fonts
 ###############################################################################
 
