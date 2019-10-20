@@ -1,7 +1,7 @@
 # Main Colors
 unrecognized_file: gold
-recognized_file:   gainsboro # lime
-dir:               mediumturquoise # dodgerblue
+recognized_file:   ghostwhite # lime
+dir:               dodgerblue # dodgerblue
 
 # Link
 dead_link: red
@@ -37,8 +37,8 @@ error:  red
 normal: darkkhaki
 
 # Git
-addition:     limegreen # chartreuse
+addition:     lime # chartreuse
 modification: gold
-deletion:     tomato # darkred
+deletion:     red # darkred
 untracked:    orange # darkorange
-unchanged:    limegreen # forestgreeen
+unchanged:    lime # forestgreeen
