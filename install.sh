@@ -73,6 +73,7 @@ brew_install() {
   brew update
 
   apps=(
+    fzf
     git
     jq
     tmux

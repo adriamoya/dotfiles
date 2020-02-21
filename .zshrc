@@ -151,5 +151,24 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 # Enable kubernetes completion -- no need since there is a plugin in oh-my-zsh
 # source <(kubectl completion zsh)
 
+# Reverse search with fzf
+_reverse_search(){
+  selected_command=$(fc -rl 1 | awk '{$1="";print substr($0,2)}' | sort | uniq | fzf)
+
+  echo -n $selected_command
+}
+
+zle     -N   _reverse_search
+bindkey '^r' _reverse_search
+
 # Initialize Z (https://github.com/rupa/z)
 . ~/z.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/adriamoya/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/adriamoya/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/adriamoya/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/adriamoya/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="/usr/local/opt/php@7.3/bin:$PATH"
+export PATH="/usr/local/opt/php@7.3/sbin:$PATH"
+export "PATH=/usr/local/opt/rabbitmq/sbin:$PATH"
