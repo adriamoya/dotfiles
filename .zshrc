@@ -18,7 +18,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="agnoster"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
 # ZSH_THEME="spaceship"
 # ZSH_THEME="cobalt2"
 
@@ -77,6 +78,8 @@ plugins=(
   docker
   kubectl
   tmux
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 # Sourcing oh-my-zsh and other shell helpers
@@ -155,7 +158,7 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 _reverse_search(){
   selected_command=$(fc -rl 1 | awk '{$1="";print substr($0,2)}' | sort | uniq | fzf)
 
-  echo -n $selected_command
+  eval $selected_command
 }
 
 zle     -N   _reverse_search
