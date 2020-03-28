@@ -15,6 +15,7 @@ CURRENT_SCRIPT=${0##*/}
 
 # Files to symlink
 declare -a FILES_TO_SYMLINK=(
+  'fzf.plugin.zsh'
   'gitconfig'
   'gitignore_global'
   'zsh_aliases'
