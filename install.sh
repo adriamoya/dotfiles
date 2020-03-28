@@ -74,6 +74,7 @@ brew_install() {
   brew update
 
   apps=(
+    diff-so-fancy
     fzf
     git
     jq
