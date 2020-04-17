@@ -71,7 +71,8 @@
   l = log --pretty=custom                      # Show custom log
   ll = log --stat --abbrev-commit
   lc = shortlog --summary --numbered           # List contributors
-  lg = log --oneline --decorate --all --graph
+  #lg = log --oneline --decorate --all --graph
+  lg =  log --graph --pretty='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(bold blue)<%an>%Creset %Cgreen%ad (%cr)' --all --date=format:'%Y-%m-%d %H:%M'
 
   # Reset
   unstage = reset HEAD --                      # Mixed reset (affects HEAD and Index)
