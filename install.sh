@@ -78,6 +78,9 @@ brew_install() {
     fzf
     git
     jq
+    kubectx
+    kube-ps1
+    kops
     tmux
     tree
     wget

@@ -182,3 +182,8 @@ export "PATH=/usr/local/opt/rabbitmq/sbin:$PATH"
 
 # Java home path
 export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/"
+export GOOGLE_APPLICATION_CREDENTIALS="/Users/adriamoya/nemuru/keys/data-science-239811-215aac45ffef.json"
+
+# Add kube-ps1 to PROMPT
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+export PROMPT='$(kube_ps1)'$PROMPT
