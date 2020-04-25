@@ -74,6 +74,7 @@ HIST_STAMPS="yyyy/mm/dd"
 # Add wisely, as too many plugins slow down shell startup.
 # https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins
 plugins=(
+  fzf
   git
   docker
   kubectl
@@ -153,20 +154,6 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 
 # Enable kubernetes completion -- no need since there is a plugin in oh-my-zsh
 # source <(kubectl completion zsh)
-
-# fzf
-# ------------------------------------------------------------------------------
-source $HOME/.fzf.plugin.zsh
-
-# Reverse search with fzf
-_reverse_search(){
-  selected_command=$(fc -rl 1 | awk '{$1="";print substr($0,2)}' | sort | uniq | fzf)
-  echo $selected_command
-  eval $selected_command
-}
-
-zle -N _reverse_search
-bindkey '^r' _reverse_search
 
 # Initialize Z (https://github.com/rupa/z)
 . ~/z.sh
