@@ -77,9 +77,11 @@ plugins=(
   fzf
   git
   docker
+  kube-ps1
   kubectl
   tmux
   zsh-autosuggestions
+  zsh-interactive-cd
   zsh-syntax-highlighting
 )
 
@@ -154,6 +156,10 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 
 # Enable kubernetes completion -- no need since there is a plugin in oh-my-zsh
 # source <(kubectl completion zsh)
+
+# fzf
+# ------------------------------------------------------------------------------
+source $HOME/.fzf.plugin.zsh
 
 # Initialize Z (https://github.com/rupa/z)
 . ~/z.sh
