@@ -30,7 +30,7 @@ alias ls="command ls ${colorflag}"
 # colorls
 alias l='colorls -l -1 --sd --gs'
 alias la='colorls -al -1 --sd --gs'
-alias lc='colorls -l --sd'
+alias lc='colorls -al --sd --gs'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"

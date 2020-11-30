@@ -106,3 +106,11 @@
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [color]
 	ui = true
+[diff]
+    tool = vscode
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+    tool = vscode
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
