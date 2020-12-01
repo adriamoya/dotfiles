@@ -168,8 +168,13 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
 
 # Install the ZSH syntax highlighting plugin if it's not already installed
 if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]]; then
-  echo "\n---> Installing Syntax highlighting\n"
+  echo "\n---> Installing Zsh Syntax highlighting\n"
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
+
+if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then
+  echo "\n---> Installing Zsh autosuggestions\n"
+	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
 
 # Themes
@@ -186,6 +191,12 @@ if [[ ! -d $HOME/.oh-my-zsh/custom/themes/powerlevel9k ]]; then
   echo "\n---> Installing Powerlevel9k theme\n"
   git clone https://github.com/bhilburn/powerlevel9k.git  "$ZSH_CUSTOM/themes/powerlevel9k"
   ln -s "$ZSH_CUSTOM/themes/powerlevel9k/powerlevel9k.zsh-theme" "$ZSH_CUSTOM/themes/powerlevel9k.zsh-theme"
+fi
+
+if [[ ! -d $HOME/.oh-my-zsh/custom/themes/cobalt2 ]]; then
+  echo "\n---> Installing Cobalt2 theme\n"
+  git clone https://github.com/wesbos/Cobalt2-iterm.git  "$ZSH_CUSTOM/themes/cobalt2"
+  ln -s "$ZSH_CUSTOM/themes/cobalt2/cobalt2.zsh-theme" "$ZSH_CUSTOM/themes/cobalt2.zsh-theme"
 fi
 
 # Color schemes
@@ -220,6 +231,12 @@ if [ ! -f $HOME/.oh-my-zsh/custom/schemes/SpaceGray.itermcolors ]; then
   curl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/SpaceGray.itermcolors > ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/schemes/SpaceGray.itermcolors
 fi
 
+# Install the Cobalt2 Scheme
+if [ ! -f $HOME/.oh-my-zsh/custom/schemes/cobalt2.itermcolors ]; then
+  echo "\n---> Installing Cobalt2 color scheme\n"
+  curl https://raw.githubusercontent.com/wesbos/Cobalt2-iterm/master/cobalt2.itermcolors > ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/schemes/cobalt2.itermcolors
+fi
+
 # Install colorls - Enhances the terminal command ls with color and icons
 echo "\n---> Installing colorls\n"
 sudo gem install colorls
@@ -242,7 +259,7 @@ rm -rf ./fonts
 
 # Install Hack Nerd Fonts
 echo "\n---> Installing Hack Nerd fonts\n"
-brew tap caskroom/fonts
+brew tap homebrew/cask-fonts
 brew cask install font-hack-nerd-font
 
 ###############################################################################

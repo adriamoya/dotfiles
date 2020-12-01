@@ -148,7 +148,7 @@ ITERM2_TITLE_BACKGROUND_BLUE="33"
 title_background_color
 
 # Colorls (change colors with > atom $(dirname $(gem which colorls))/yaml)
-source $(dirname $(gem which colorls))/tab_complete.sh
+# source $(dirname $(gem which colorls))/tab_complete.sh
 
 # Enable docker completion -- no need since there is a plugin in oh-my-zsh
 # fpath=(~/.zsh/completion $fpath)
@@ -180,3 +180,5 @@ export GOOGLE_APPLICATION_CREDENTIALS="/Users/adriamoya/nemuru/keys/data-science
 # Add kube-ps1 to PROMPT
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 export PROMPT='$(kube_ps1)'$PROMPT
+
+eval "$(rbenv init -)"

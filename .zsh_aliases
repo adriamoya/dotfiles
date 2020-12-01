@@ -28,9 +28,9 @@ alias lsd="ls -lF ${co#lorflag} | grep --color=never '^d'"
 alias ls="command ls ${colorflag}"
 
 # colorls
-alias l='colorls -l -1 --sd --gs'
-alias la='colorls -al -1 --sd --gs'
-alias lc='colorls -al --sd --gs'
+#alias l='colorls -l -1 --sd --gs'
+#alias la='colorls -al -1 --sd --gs'
+#alias lc='colorls -al --sd --gs'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
